@@ -1,5 +1,4 @@
 import web_scrap
-
 amazon_headers = {
             'authority': 'www.amazon.com',
             'pragma': 'no-cache',
@@ -14,4 +13,5 @@ amazon_headers = {
             'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
         }
 prd_name ='oneplus 9'
-web_scrap.amazon(prd_name, amazon_headers)        
+
+web_scrap.amazon(prd_name, amazon_headers)
