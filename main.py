@@ -1,4 +1,8 @@
 import web_scrap
+import os
+from flask import Flask, request, Response
+
+"""Amazon Headers """
 amazon_headers = {
             'authority': 'www.amazon.com',
             'pragma': 'no-cache',
@@ -12,6 +16,38 @@ amazon_headers = {
             'sec-fetch-dest': 'document',
             'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
         }
-prd_name ='oneplus 9'
 
-web_scrap.amazon(prd_name, amazon_headers)
+
+
+
+app = Flask(__name__)
+
+"""Export SLACK Webhook Secret in environment Variable
+   USAGE:
+   export SLACK_WEBHOOK_SECRET='Value'
+"""
+SLACK_WEBHOOK_SECRET = os.environ.get('SLACK_WEBHOOK_SECRET')
+
+
+@app.route('/find', methods=['POST'])
+def find():
+    if request.method == 'POST':
+        data = request.form
+        prd_name = data.get('text')
+        username = data.get('user_name')
+        print(prd_name)
+        web_scrap.amazon(prd_name, amazon_headers)
+        return "Success", 200
+    else:
+        print("Please use POST Method")
+
+
+@app.route('/', methods=['GET'])
+def test():
+    return Response('It works!')
+
+
+if __name__ == "__main__":
+    """ Run the  Flask Application"""
+    app.debug = True
+    app.run(host="0.0.0.0")
