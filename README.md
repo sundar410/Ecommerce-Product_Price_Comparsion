@@ -7,7 +7,7 @@ Find the lowest product price across all E-Commerce
 
 pip3 install -r requirement.txt
 
-## To Start the Application
+## To Run the Application
 
 git clone https://github.com/sundar410/Ecommerce-Product_Price_Comparsion.git
 
