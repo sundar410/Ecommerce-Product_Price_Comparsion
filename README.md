@@ -17,7 +17,8 @@ python main.py
 
 /find = Find the Product name
 
-/find iphone 13
+/find iphone 11
+
 
 
 
